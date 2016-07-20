@@ -71,6 +71,8 @@ body {
 .playlist-container {
   float: right;
   width: 50%;
+  display: none;
+  transition: 0.3s all;
 }
 
 .song {
@@ -103,11 +105,23 @@ body {
   color: #9b59b6 !important;
 }
 
+.loading {
+  position: absolute;
+  left: 70%;
+  top: 35%;
+  width: 100px;
+  transition: 0.3s all;
+}
+
+.loading img {
+  width: 100%;
+  margin: 0 auto;
+}
+
 /* BOTTOM NAV */
 
 .navbottom {
   width: 100%;
-  /*border-top: 2px solid #333;*/
   background: #fff;
   color: #333;
   transition: 0.3s all;
@@ -153,10 +167,19 @@ body {
     height: auto;
   }
 
+  .loading {
+    top: 85%;
+    left: 45%;
+  }
+
 }
 
 @media screen and (max-width: 600px) {
   .song-img-container, .playlist-container {
     width: 75%;
+  }
+
+  .loading {
+    top: 75%;
   }
 }
