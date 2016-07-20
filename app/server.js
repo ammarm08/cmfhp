@@ -16,6 +16,14 @@ app.get('/', function (req, res) {
   res.render('index', { songs: vol_one });
 });
 
+app.get('/vol-i', function (req, res) {
+  res.render('index', { songs: vol_one });
+});
+
+app.get('/*', function (req, res) {
+  res.redirect('/vol-i');
+})
+
 app.listen(PORT, function () {
   console.log('Listening on ', PORT);
 })

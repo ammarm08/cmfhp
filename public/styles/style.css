@@ -80,13 +80,10 @@ body {
   margin: 20px auto;
 }
 
-.song-details, .share-song {
-  display: inline-block;
-}
-
 .song-details {
   width: 80%;
   font-size: 0.9em;
+  float: left;
 }
 
 .song-artist {
@@ -95,6 +92,12 @@ body {
 
 .share-song {
   width: 5%;
+  float: right;
+}
+
+.share-song a {
+  text-decoration: none;
+  color: #333;
 }
 
 .song-details:hover {

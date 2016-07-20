@@ -37,8 +37,9 @@
             <div class="song-title" data-song-link=<%- song.link %>><%- song.title %></div>
             <div class="song-artist"><%- song.artist %></div>
           </div>
-          <div class="share-song">Share</div>
+          <div class="share-song"><a class="glyphicon glyphicon-new-window" href=<%- song.link %> target="_blank"></a></div>
         </div>
+        <div class="clear"></div>
       <% }) %>
     </div>
   </div>
@@ -60,7 +61,7 @@
       // DOM 
       var playButton = document.getElementsByClassName('play-pause')[0];
       var playlist = document.getElementsByClassName('playlist-container')[0];
-      var songs = document.getElementsByClassName('song-title');
+      var SONGS = document.getElementsByClassName('song-title');
       var loading = document.getElementsByClassName('loading')[0];
 
       // SC
@@ -99,26 +100,43 @@
       }
 
       function playSongOnClick () {
-        for (var i = 0; i < songs.length; i++) {
-          var song = songs[i];
+        for (var i = 0; i < SONGS.length; i++) {
+          var song = SONGS[i];
           var link = song.getAttribute('data-song-link');
-          song.onclick = function () {
-            pauseCurrentSong();
 
-            loading.style.display = 'block';
-            playlist.style.opacity = '0.5';
-            
-            widget.load(link, {
-              callback: function () {
-                playCurrentSong();
+          (function (s, l) {
+            s.onclick = function () {
+              pauseCurrentSong();
 
-                playlist.style.opacity = '1';
-                loading.style.display = 'none';
-              }
-            });
-          }
+              loading.style.display = 'block';
+              playlist.style.opacity = '0.5';
+              
+              widget.load(l, {
+                callback: function () {
+                  playCurrentSong();
+
+                  playlist.style.opacity = '1';
+                  loading.style.display = 'none';
+                  addPlayingClass(s);
+                }
+              });
+            }
+          })(song, link);
         }
       }
+
+      function addPlayingClass (song) {
+        clearPlayingClassFromAll(SONGS);
+        song.classList.add('playing');
+      }
+
+      function clearPlayingClassFromAll (songs) {
+        for (var i = 0; i < songs.length; i++) {
+          var song = songs[i];
+          song.classList.remove('playing');
+        }
+      }
+
     }());
   </script>
 
