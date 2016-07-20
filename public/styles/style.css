@@ -1,17 +1,32 @@
 body {
   margin: 0;
   color: #333;
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* TOP NAV */
 
 .topnav {
   width: 100%;
-  border-bottom: 2px solid #333;
+  height: 8vh;
+  border-bottom: 1px solid #333;
   color: #333;
   background: #fff;
   transition: 0.3s all;
+}
+
+.tagline {
+  display: none;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 1.5em;
+  padding-top: 4px;
+  color: #9b59b6;
+}
+
+.logo {
+  font-family: 'Istok Web', sans-serif;
+  font-size: 2em;
+  letter-spacing: -0.11em;
 }
 
 .topnav-message {
@@ -20,11 +35,19 @@ body {
   padding: 8px;
 }
 
+.topnav:hover > .topnav-message .logo {
+  display: none;
+}
+
+.topnav:hover > .topnav-message .tagline {
+  display: block;
+}
+
 /* MAIN APP */
 
 .app {
   width: 90%;
-  height: 80vh;
+  height: 78vh;
   margin: 10px auto;
 }
 
@@ -34,8 +57,9 @@ body {
 
 .song-img-container, .playlist-container {
   width: 45%;
-  height: 80vh;
+  height: 78vh;
   margin: 24px auto;
+  transition: 0.3s all;
 }
 
 .image {
@@ -77,14 +101,14 @@ body {
 }
 
 .playing {
-  color: #F24236 !important;
+  color: #9b59b6 !important;
 }
 
 /* BOTTOM NAV */
 
 .navbottom {
   width: 100%;
-  border-top: 2px solid #333;
+  /*border-top: 2px solid #333;*/
   background: #fff;
   color: #333;
   transition: 0.3s all;
@@ -98,6 +122,11 @@ body {
 
 .audio-container .glyphicon {
   font-size: 1.2em;
+  margin: 0 4px;
+}
+
+.audio-container .glyphicon:hover {
+  cursor: pointer;
 }
 
 /* CLEAR */
@@ -125,4 +154,10 @@ body {
     height: auto;
   }
 
+}
+
+@media screen and (max-width: 600px) {
+  .song-img-container, .playlist-container {
+    width: 75%;
+  }
 }
