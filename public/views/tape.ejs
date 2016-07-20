@@ -52,7 +52,9 @@
       <div class="glyphicon glyphicon-forward"></div>
     </div>
   </nav>
-  <iframe type="audio/mp3" target="_top" id="sandbox" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/joyful-noise-recordings/say-yeah" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe>
+  <div>
+    <iframe type="audio/mp3" target="_top" id="sandbox" src=<%-"https://w.soundcloud.com/player/?url=" + songs[0].link %> scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe>
+  </div>
 
   <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
   <script type="text/javascript">
