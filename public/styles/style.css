@@ -219,7 +219,21 @@ body a:hover {
 }
 
 @media screen and (max-width: 600px) {
+
   .app {
+    display: none;
+  }
+
+  .mobile-notice {
+    display: block;
+  }
+
+  #email {
+    color: #9b59b6;
+  }
+
+  /* BELOW FOR WHEN I GET MOBILE SOUND WORKING */
+  /*.app {
     height: 82vh;
   }
 
@@ -233,5 +247,5 @@ body a:hover {
 
   .loading {
     top: 75%;
-  }
+  }*/
 }
