@@ -3,7 +3,7 @@
 let express = require('express');
 let app = express();
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 let vol_one = require('./vol1.js');
 
 /* SERVER CONFIG */
