@@ -44,7 +44,7 @@ body a:hover {
 .topnav-message {
   width: 100%;
   text-align: center;
-  padding: 8px;
+  padding: 8px 8px 8px 8px;
 }
 
 .topnav:hover > .topnav-message .logo {
@@ -57,10 +57,16 @@ body a:hover {
 
 /* MAIN APP */
 
-.app {
+.app, .mobile-notice {
   width: 90%;
   height: 78vh;
   margin: 10px auto;
+}
+
+.mobile-notice {
+  margin-top: 150px;
+  text-align: center;
+  display: none;
 }
 
 .song-img-container {
@@ -84,7 +90,7 @@ body a:hover {
 .playlist-container {
   float: right;
   width: 50%;
-  display: none;
+  opacity: 0.5;
   transition: 0.3s all;
 }
 
@@ -212,6 +218,10 @@ body a:hover {
 }
 
 @media screen and (max-width: 600px) {
+  .app {
+    height: 82vh;
+  }
+
   .song-img-container, .playlist-container {
     width: 75%;
   }
