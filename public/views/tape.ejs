@@ -62,6 +62,11 @@
       var SONGS = document.getElementsByClassName('song-title');
       var SONG_INDEX = 0;
 
+      // KEYCODES
+      var SPACEBAR = 32;
+      var LEFT = 37;
+      var RIGHT = 39;
+
       // AUDIO PLAYER
       var playButton = document.getElementsByClassName('play-pause')[0];
       var prevButton = document.getElementsByClassName('glyphicon-backward')[0];
@@ -76,7 +81,7 @@
       var widget = SC.Widget(widgetIframe);
 
       // SOUNDCLOUD EVENTS
-      widget.bind(SC.Widget.Events.READY, function() {
+      widget.bind(SC.Widget.Events.READY, function () {
         // on widget load, show playlist and hide spinner
         playlist.style.display = 'block';
         loading.style.display = 'none';
@@ -84,6 +89,13 @@
         // set first song as active ("PLAYING")
         SONGS[0].classList.add('playing');
       });
+
+      widget.bind(SC.Widget.Events.FINISH, function () {
+        // play next song on list after current is finished
+        pauseCurrentSong();
+        var clickEvent = new Event('click');
+        nextButton.dispatchEvent(clickEvent);
+      })
 
       // AUDIO PLAYER EVENTS 
       playButton.onclick = function () {
@@ -117,6 +129,24 @@
       // PLAYLIST EVENTS
       playSongOnClick();
 
+      // KEYBOARD EVENTS
+      document.addEventListener('keydown', function (e) {
+        if (e.keyCode === SPACEBAR) {
+          // pause/play
+          var clickEvent = new Event('click');
+          playButton.dispatchEvent(clickEvent);
+        } else if (e.keyCode === LEFT) {
+          var clickEvent = new Event('click');
+          prevButton.dispatchEvent(clickEvent);
+        } else if (e.keyCode === RIGHT) {
+          var clickEvent = new Event('click');
+          nextButton.dispatchEvent(clickEvent);
+        }
+
+        return false;
+      })
+
+      // HELPER FUNCTIONS
       function playCurrentSong () {
         widget.play();
         playButton.classList.add('glyphicon-pause');
