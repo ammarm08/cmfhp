@@ -31,7 +31,7 @@
     
     <div class="playlist-container">
     <!-- songs go here -->
-      <% songs.forEach(function (song) { %>
+      <% songs.forEach(function (song, i) { %>
         <div class="song">
           <div class="song-details">
             <div class="song-title" data-song-link=<%- song.link %>><%- song.title %></div>
@@ -58,23 +58,34 @@
   <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
   <script type="text/javascript">
     (function(){
-      // DOM 
-      var playButton = document.getElementsByClassName('play-pause')[0];
-      var playlist = document.getElementsByClassName('playlist-container')[0];
+      // DATA
       var SONGS = document.getElementsByClassName('song-title');
+      var SONG_INDEX = 0;
+
+      // AUDIO PLAYER
+      var playButton = document.getElementsByClassName('play-pause')[0];
+      var prevButton = document.getElementsByClassName('glyphicon-backward')[0];
+      var nextButton = document.getElementsByClassName('glyphicon-forward')[0];
+
+      // PLAYLIST
+      var playlist = document.getElementsByClassName('playlist-container')[0];
       var loading = document.getElementsByClassName('loading')[0];
 
-      // SC
+      // SOUNDCLOUD
       var widgetIframe = document.getElementById('sandbox');
       var widget = SC.Widget(widgetIframe);
 
+      // SOUNDCLOUD EVENTS
       widget.bind(SC.Widget.Events.READY, function() {
         // on widget load, show playlist and hide spinner
         playlist.style.display = 'block';
         loading.style.display = 'none';
+
+        // set first song as active ("PLAYING")
+        SONGS[0].classList.add('playing');
       });
 
-      // EVENTS 
+      // AUDIO PLAYER EVENTS 
       playButton.onclick = function () {
         if (playButton.classList.contains('glyphicon-play')) {
           playCurrentSong();
@@ -85,6 +96,25 @@
         return false;
       }
 
+      prevButton.onclick = function () {
+        if (SONG_INDEX > 0) {
+          var clickEvent = new Event('click');
+          SONGS[SONG_INDEX-1].dispatchEvent(clickEvent);
+        }
+
+        return false;
+      }
+
+      nextButton.onclick = function () {
+        if (SONG_INDEX < SONGS.length-1) {
+          var clickEvent = new Event('click');
+          SONGS[SONG_INDEX+1].dispatchEvent(clickEvent);
+        }
+
+        return false;
+      }
+
+      // PLAYLIST EVENTS
       playSongOnClick();
 
       function playCurrentSong () {
@@ -104,7 +134,7 @@
           var song = SONGS[i];
           var link = song.getAttribute('data-song-link');
 
-          (function (s, l) {
+          (function (s, l, index) {
             s.onclick = function () {
               pauseCurrentSong();
 
@@ -114,6 +144,8 @@
               widget.load(l, {
                 callback: function () {
                   playCurrentSong();
+                  SONG_INDEX = index;
+                  console.log(SONG_INDEX);
 
                   playlist.style.opacity = '1';
                   loading.style.display = 'none';
@@ -121,7 +153,7 @@
                 }
               });
             }
-          })(song, link);
+          })(song, link, i);
         }
       }
 
