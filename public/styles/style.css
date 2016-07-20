@@ -48,12 +48,9 @@ body a:hover {
   padding: 8px 8px 8px 8px;
 }
 
-.topnav:hover > .topnav-message .logo {
-  display: none;
-}
-
-.topnav:hover > .topnav-message .tagline {
-  display: block;
+.topnav:hover > .topnav-message .logo a {
+  color: #9b59b6;
+  text-decoration: underline;
 }
 
 /* MAIN APP */
@@ -185,7 +182,7 @@ body a:hover {
   margin-bottom: 50px;
 }
 
-.coming-soon a {
+.coming-soon, .coming-soon a {
   color: #adadad;
 }
 
