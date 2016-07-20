@@ -31,76 +31,15 @@
     
     <div class="playlist-container">
     <!-- songs go here -->
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
+      <% songs.forEach(function (song) { %>
+        <div class="song">
+          <div class="song-details">
+            <div class="song-title" data-song-link=<%- song.link %>><%- song.title %></div>
+            <div class="song-artist"><%- song.artist %></div>
+          </div>
+          <div class="share-song">Share</div>
         </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
-      <div class="song">
-        <div class="song-details">
-          <div class="song-title" data-song-link="https://soundcloud.com/buenonyc/eye-on-the-cards">Blow My High</div>
-          <div class="song-artist">Kendrick Lamar</div>
-        </div>
-        <div class="share-song">Share</div>
-      </div>
+      <% }) %>
     </div>
   </div>
 
