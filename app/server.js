@@ -21,9 +21,9 @@ app.get('/vol-i', function (req, res) {
 });
 
 app.get('/*', function (req, res) {
-  res.redirect('/vol-i');
-})
+  res.redirect('/');
+});
 
 app.listen(PORT, function () {
   console.log('Listening on ', PORT);
-})
+});
