@@ -52,7 +52,7 @@
       <div class="glyphicon glyphicon-forward"></div>
     </div>
   </nav>
-  <iframe target="_top" id="sandbox" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/joyful-noise-recordings/say-yeah" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe>
+  <iframe type="audio/mp3" target="_top" id="sandbox" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/joyful-noise-recordings/say-yeah" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe>
 
   <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
   <script type="text/javascript">
@@ -84,7 +84,7 @@
         // on widget load, show playlist and hide spinner
         playlist.style.opacity = '1';
         loading.style.display = 'none';
-        
+
         // set first song as active ("PLAYING")
         SONGS[0].classList.add('playing');
       });
