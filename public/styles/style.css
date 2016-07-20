@@ -4,6 +4,16 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+body a {
+  text-decoration: none;
+  color: #333;
+}
+
+body a:hover {
+  text-decoration: none;
+  color: #9b59b6;
+}
+
 /* TOP NAV */
 
 .topnav {
@@ -19,6 +29,9 @@ body {
   display: none;
   font-size: 1.5em;
   padding-top: 4px;
+}
+
+.tagline a {
   color: #9b59b6;
 }
 
@@ -149,6 +162,16 @@ body {
 
 .clear {
   clear: both;
+}
+
+/* MIXTAPES */
+
+.mixtapes-container {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  margin: 50px auto;
+  font-size: 1.5em;
 }
 
 

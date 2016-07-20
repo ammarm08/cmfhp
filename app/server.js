@@ -13,11 +13,11 @@ app.use(express.static(__dirname + '/../public'));
 
 /* ROUTES */
 app.get('/', function (req, res) {
-  res.render('index', { songs: vol_one });
+  res.render('index');
 });
 
 app.get('/vol-i', function (req, res) {
-  res.render('index', { songs: vol_one });
+  res.render('tape', { songs: vol_one });
 });
 
 app.get('/*', function (req, res) {

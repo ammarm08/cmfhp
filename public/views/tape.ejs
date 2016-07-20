@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CMHP - Cool Music for Hot People</title>
+  <link href="https://fonts.googleapis.com/css?family=Istok+Web:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css">
+</head>
+<body>
+
+  <nav class="topnav">
+    <div class="topnav-message">
+      <div class="tagline">
+        <a href='/'>cool music for hot people</a>
+      </div>
+      <div class="logo">CMHP</div>
+    </div>
+  </nav>
+
+  <div class="app">
+    <div class="song-img-container">
+      <!-- img for specific song + hidden onhover div go here -->
+      <img class="image" src="../cover.jpg"/>
+    </div>
+
+    <!-- spinner when loading song -->
+    <div class="loading">
+      <img src="../balls.svg"/>
+    </div>
+    
+    <div class="playlist-container">
+    <!-- songs go here -->
+      <% songs.forEach(function (song, i) { %>
+        <div class="song">
+          <div class="song-details">
+            <div class="song-title" data-song-link=<%- song.link %>><%- song.title %></div>
+            <div class="song-artist"><%- song.artist %></div>
+          </div>
+          <div class="share-song"><a class="glyphicon glyphicon-new-window" href=<%- song.link %> target="_blank"></a></div>
+        </div>
+        <div class="clear"></div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <nav class="navbottom">
+    <div class="audio-container">
+      <div class="glyphicon glyphicon-backward"></div>
+      <div class="glyphicon glyphicon-play play-pause"></div>
+      <div class="glyphicon glyphicon-forward"></div>
+    </div>
+  </nav>
+  <iframe target="_top" id="sandbox" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/joyful-noise-recordings/say-yeah" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe>
+
+  <script type="text/javascript" src="https://w.soundcloud.com/player/api.js"></script>
+  <script type="text/javascript">
+    (function(){
+      // DATA
+      var SONGS = document.getElementsByClassName('song-title');
+      var SONG_INDEX = 0;
+
+      // AUDIO PLAYER
+      var playButton = document.getElementsByClassName('play-pause')[0];
+      var prevButton = document.getElementsByClassName('glyphicon-backward')[0];
+      var nextButton = document.getElementsByClassName('glyphicon-forward')[0];
+
+      // PLAYLIST
+      var playlist = document.getElementsByClassName('playlist-container')[0];
+      var loading = document.getElementsByClassName('loading')[0];
+
+      // SOUNDCLOUD
+      var widgetIframe = document.getElementById('sandbox');
+      var widget = SC.Widget(widgetIframe);
+
+      // SOUNDCLOUD EVENTS
+      widget.bind(SC.Widget.Events.READY, function() {
+        // on widget load, show playlist and hide spinner
+        playlist.style.display = 'block';
+        loading.style.display = 'none';
+
+        // set first song as active ("PLAYING")
+        SONGS[0].classList.add('playing');
+      });
+
+      // AUDIO PLAYER EVENTS 
+      playButton.onclick = function () {
+        if (playButton.classList.contains('glyphicon-play')) {
+          playCurrentSong();
+        } else {
+          pauseCurrentSong();
+        }
+
+        return false;
+      }
+
+      prevButton.onclick = function () {
+        if (SONG_INDEX > 0) {
+          var clickEvent = new Event('click');
+          SONGS[SONG_INDEX-1].dispatchEvent(clickEvent);
+        }
+
+        return false;
+      }
+
+      nextButton.onclick = function () {
+        if (SONG_INDEX < SONGS.length-1) {
+          var clickEvent = new Event('click');
+          SONGS[SONG_INDEX+1].dispatchEvent(clickEvent);
+        }
+
+        return false;
+      }
+
+      // PLAYLIST EVENTS
+      playSongOnClick();
+
+      function playCurrentSong () {
+        widget.play();
+        playButton.classList.add('glyphicon-pause');
+        playButton.classList.remove('glyphicon-play');
+      }
+
+      function pauseCurrentSong () {
+        widget.pause();
+        playButton.classList.add('glyphicon-play');
+        playButton.classList.remove('glyphicon-pause');
+      }
+
+      function playSongOnClick () {
+        for (var i = 0; i < SONGS.length; i++) {
+          var song = SONGS[i];
+          var link = song.getAttribute('data-song-link');
+
+          (function (s, l, index) {
+            s.onclick = function () {
+              pauseCurrentSong();
+
+              loading.style.display = 'block';
+              playlist.style.opacity = '0.5';
+              
+              widget.load(l, {
+                callback: function () {
+                  playCurrentSong();
+                  SONG_INDEX = index;
+                  console.log(SONG_INDEX);
+
+                  playlist.style.opacity = '1';
+                  loading.style.display = 'none';
+                  addPlayingClass(s);
+                }
+              });
+            }
+          })(song, link, i);
+        }
+      }
+
+      function addPlayingClass (song) {
+        clearPlayingClassFromAll(SONGS);
+        song.classList.add('playing');
+      }
+
+      function clearPlayingClassFromAll (songs) {
+        for (var i = 0; i < songs.length; i++) {
+          var song = songs[i];
+          song.classList.remove('playing');
+        }
+      }
+
+    }());
+  </script>
+
+</body>
+</html>
