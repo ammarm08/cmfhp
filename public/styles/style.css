@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  color: #333;
+  font-family: 'Inconsolata', monospace;
+}
+
+/* TOP NAV */
+
+.topnav {
+  width: 100%;
+  border-bottom: 2px solid #333;
+  background: #fff;
+  color: #fff;
+  background: #333;
+  transition: 0.3s all;
+}
+
+.topnav-message {
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+}
+
+/* BOTTOM NAV */
+
+.navbottom {
+  width: 100%;
+  border-top: 2px solid #333;
+  background: #fff;
+  color: #333;
+  transition: 0.3s all;
+}
+
+.audio-container {
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.audio-container .glyphicon {
+  font-size: 1.2em;
+}
+
+/* CLEAR */
+
+.clear {
+  clear: both;
+}
+
+/* MAIN APP */
+
+.app {
+  width: 90%;
+  height: 80vh;
+  margin: 10px auto;
+}
+
+.song-img-container {
+  float: left;
+}
+
+.song-img-container, .playlist-container {
+  width: 45%;
+  height: 80vh;
+  margin: 24px auto;
+}
+
+.image {
+  width: 100%;
+  height: 550px;
+  max-height: 550px;
+  box-shadow: 2px 2px 18px -4px rgba(173,173,173,0.94);
+}
+
+.playlist-container {
+  float: right;
+  width: 50%;
+  max-height: 550px;
+}
+
+.song {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.song-details, .share-song {
+  display: inline-block;
+}
+
+.song-details {
+  width: 80%;
+  font-size: 0.9em;
+}
+
+.song-artist {
+  color: #adadad;
+}
+
+.share-song {
+  width: 5%;
+}
+
+.song-details:hover {
+  cursor: pointer;
+}
+
+.playing {
+  color: blue !important;
+}
+
+
+/* VIEWPORTS */
+
+@media screen and (max-width: 1128px) {
+  .song-img-container, .playlist-container {
+    float: none;
+    display: block;
+  }
+
+  .app {
+    overflow-y: scroll;
+    width: 100%;
+    height: 85vh;
+  }
+
+  .song-img-container, .image {
+    height: auto;
+  }
+
+}
