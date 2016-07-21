@@ -174,12 +174,17 @@ body a:hover {
   width: 100%;
   text-align: center;
   padding: 8px;
-  margin: 150px auto;
+  margin: 50px auto;
   font-size: 1.5em;
 }
 
 .mixtapes-container .description {
   margin-bottom: 50px;
+}
+
+.description a, .description a:hover {
+  color: #333;
+  text-decoration: underline;
 }
 
 .coming-soon, .coming-soon a {
